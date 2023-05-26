@@ -1,13 +1,12 @@
 #include <iostream>
-using namespace std;
 
+using namespace std;
 bool isBoardSolved(int arr[3][3])
 {
     if (arr[0][0] == 1 && arr[1][1] == 1 && arr[2][2] == 1 || arr[0][0] == 2 && arr[1][1] == 2 && arr[2][2] == 2)
     {
         return true;
     }
-
     for (int i = 0; i < 3; i++)
     {
         if (arr[i][0] == 1 && arr[i][1] == 1 && arr[i][2] == 1 || arr[i][0] == 2 && arr[i][1] == 2 && arr[i][2] == 2)
@@ -19,7 +18,6 @@ bool isBoardSolved(int arr[3][3])
             return true;
         }
     }
-
     if (arr[0][2] == 1 && arr[1][1] == 1 && arr[2][0] == 1 || arr[0][2] == 2 && arr[1][1] == 2 && arr[2][0] == 2)
     {
         return true;
@@ -54,17 +52,15 @@ int main()
     cout << "Use 0 based indexing" << endl;
 
     bool gamerunning = true;
-    bool correctplace = false;
+    bool correctplace;
     int player1row, player1column;
     int player2row, player2column;
     int turns = 0;
-
+    displayArray(arr);
     while (gamerunning)
     {
 
-        displayArray(arr);
-
-        while (!correctplace)
+        do
         {
             cout << "Player 1 enter row: ";
             cin >> player1row;
@@ -80,20 +76,26 @@ int main()
             {
                 correctplace = false;
             }
-        }
+        } while (!correctplace);
 
         displayArray(arr);
-        correctplace = false;
+
 
         if (isBoardSolved(arr))
         {
             cout << "!!! Player 1 won !!!" << endl;
             gamerunning = false;
-            displayArray(arr);
+            break;
+        }
+        
+        if (turns == 9)
+        {
+            cout << "!!!Draw !!!";
+            gamerunning = false;
             break;
         }
 
-        while (!correctplace)
+        do
         {
             cout << "Player 2 enter row: ";
             cin >> player2row;
@@ -109,13 +111,15 @@ int main()
             {
                 correctplace = false;
             }
-        }
-        correctplace = false;
+        } while (!correctplace);
+
+
+        
+        displayArray(arr);
         if (isBoardSolved(arr))
         {
             cout << "!!! Player 2 won !!!" << endl;
             gamerunning = false;
-            displayArray(arr);
             break;
         }
 
@@ -126,6 +130,5 @@ int main()
             break;
         }
     }
-
     return 0;
 }
