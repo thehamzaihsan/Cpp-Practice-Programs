@@ -26,7 +26,10 @@ int main()
     char target;
 
     // taking input
-    cin >> str >> target;
+    cout << "Enter string: ";
+    cin >> str;
+    cout << "Enter Target: ";
+    cin >> target;
 
     // calling function
     cout << totaloccurances(str, target);
