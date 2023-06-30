@@ -5,7 +5,7 @@ int main()
 {
 
     // bubblesort
-    const int array_size = 5;
+    const int array_size = 10;
     int arr[array_size];
     int max = arr[1];
     int temp;

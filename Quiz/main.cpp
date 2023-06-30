@@ -28,4 +28,5 @@ int main()
     }
 
     cout << "Average is " << getAverage(arr);
+    return 0;
 }
